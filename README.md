@@ -1,4 +1,4 @@
-# Animate3D - Animação 3D Interativa com PHP, MySQL, Three.js, jQuery e AJAX
+# Animate3D
 
 O Animate3D é um projeto que combina as tecnologias PHP, MySQL, Three.js, jQuery e AJAX para criar animações 3D interativas. Com ele, é possível controlar a velocidade da animação, o tempo de duração, colorir partes do objeto, trocar a cor de fundo, fazer animações de câmera, controlar o tamanho do objeto e salvar todas as informações no banco de dados.
 
