@@ -11,132 +11,28 @@
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 	<link rel="stylesheet" href="https://figueirabarros.com.br/biblioteca/sistema/sistema/plugins/toastr/toastr.min.css">
-
 	<link type="text/css" rel="stylesheet" href="assets/css/controle.css">
-
-
+	<link type="text/css" rel="stylesheet" href="assets/css/loading.css">
+	<script src="assets/js/loading.js"></script>
+	<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
 </head>
 
 
 <body>
 	<div id="loading-container">
-		
 		<div class="progress">
 			<div id="progress-bar" class="progress-bar"></div>
 		</div>
 	</div>
-
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			var progressBar = document.getElementById("progress-bar");
-			var progress = 0;
-			var interval = setInterval(function() {
-				progress += 1;
-				progressBar.style.width = progress + "%";
-				if (progress >= 100) {
-					clearInterval(interval);
-					setTimeout(function() {
-						var loadingContainer = document.getElementById("loading-container");
-						loadingContainer.style.display = "none";
-					}, 500);
-				}
-			}, 30);
-		});
-	</script>
-
 	<div id="footer">
 		<input type="hidden" id="numero_animacao_final" value="0">
 		<input type="hidden" id="numero_animacao" value="0">
 		<input id="controle_animacao" type="range" value="0" max="5.000" step="0.00001">
 	</div>
 
-	<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
-
 
 	<button type="button" class="btn btn-primary madril" onclick="toggleWindow()">Configuração</button>
-
-
-	<style>
-		.open-window {
-			position: fixed;
-			top: 0;
-			right: 0;
-			height: 100%;
-			width: 0;
-			z-index: 9999;
-			overflow: hidden;
-			transition: width 0.3s ease-in-out;
-		}
-
-		.open-window.open {
-			width: 300px;
-		}
-
-		.open-window-content {
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 100%;
-			width: 100%;
-			background-color: transparent;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.open-window-content-container {
-			background-color: #fff;
-			padding: 20px;
-			border-radius: 10px;
-			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-			font-family: Arial, sans-serif;
-			color: black;
-		}
-
-		.open-window-content h5 {
-			margin-top: 0;
-			font-size: 18px;
-			font-weight: bold;
-			text-align: center;
-			margin-bottom: 20px;
-		}
-
-		.open-window-content label {
-			display: block;
-			margin-bottom: 5px;
-			font-weight: bold;
-			font-size: 14px;
-		}
-
-		.open-window-content button {
-			display: block;
-			margin-top: 10px;
-			padding: 8px 12px;
-			border: none;
-			border-radius: 4px;
-			background-color: #007bff;
-			color: #fff;
-			font-size: 14px;
-			font-weight: bold;
-			cursor: pointer;
-			width: 100%;
-			text-align: center;
-		}
-
-		.open-window-content button:hover {
-			background-color: #0056b3;
-		}
-
-		.open-window-content input[type="color"] {
-			width: 100%;
-			padding: 0;
-			border: none;
-			cursor: pointer;
-			margin-bottom: 10px;
-		}
-	</style>
 
 	<script>
 		function toggleWindow() {
@@ -199,10 +95,11 @@
 					"three/addons/": "https://figueirabarros.com.br/biblioteca/three/jsm/"
 				}
 			}
-		</script>
+	</script>
 
 	<script type="module">
 		$("#footer").hide();
+
 
 
 		$(document).ready(function() {
@@ -296,42 +193,26 @@
 		var clock = new THREE.Clock();
 		var raycaster = new THREE.Raycaster();
 		var mouse = new THREE.Vector2();
-
 		var isDragging = false;
 		var previousMousePosition = {
 			x: 0,
 			y: 0
 		};
-
-
 		var requestID;
-
 		var mixer;
-
-
 		var mixer_bateria;
-
 		var mixer_animacao_1;
 		var mixer_animacao_2;
 		var mixer_animacao_3;
 		let theta = 0;
-
 		const pointer = new THREE.Vector2();
 		const radius = 100;
-
 		var INTERSECTED;
-
-
 		var bateria_visible = 1;
 		var modelagem_visible = 1;
 		var modelagem_visible = 0;
-
 		init();
 		render();
-
-
-
-
 
 		$("#colorPicker").on("input", function(event) {
 			colorPicker()
@@ -347,7 +228,7 @@
 		function animateCamera() {
 
 			const finalPosition = new THREE.Vector3(5, 0, 5); // Posição final da câmera (exemplo: zoom)
-			const initialPosition= new THREE.Vector3(10, 0, 15); 
+			const initialPosition = new THREE.Vector3(10, 0, 15);
 			const duration = 6;
 			const startTime = Date.now();
 
@@ -355,21 +236,21 @@
 			gltfObject.getWorldPosition(gltfCenter);
 
 			function updateCamera() {
-	
-				const elapsedTime = (Date.now() - startTime) / 1000;			// Calcular o tempo decorrido desde o início da animação
 
-			
-				const progress = Math.min(elapsedTime / duration, 1);	// Calcular a porcentagem de conclusão da animação
+				const elapsedTime = (Date.now() - startTime) / 1000; // Calcular o tempo decorrido desde o início da animação
 
-	
+
+				const progress = Math.min(elapsedTime / duration, 1); // Calcular a porcentagem de conclusão da animação
+
+
 				const position = new THREE.Vector3();
 				position.lerpVectors(initialPosition, finalPosition, progress); // Interpolar a posição da câmera entre a posição inicial e final
 
-		
-				camera.position.copy(position);		// Atualizar a posição da câmera
 
-		
-				camera.lookAt(gltfCenter);		// Apontar a câmera para o ponto central do objeto GLTF
+				camera.position.copy(position); // Atualizar a posição da câmera
+
+
+				camera.lookAt(gltfCenter); // Apontar a câmera para o ponto central do objeto GLTF
 
 				// Verificar se a animação ainda está em progresso
 				if (progress < 1) {
@@ -387,15 +268,15 @@
 
 			const finalPosition = new THREE.Vector3(0, 0, 5); // Posição final da câmera (exemplo: zoom)
 
-	
+
 			const gltfCenter = new THREE.Vector3();
 			gltfObject.getWorldPosition(gltfCenter);
 
-	
+
 			const initialPosition = gltfCenter.clone();
 			initialPosition.z += 20; // Distância inicial da câmera em relação ao objeto GLTF
 
-	
+
 			const duration = 6;
 
 
@@ -409,7 +290,7 @@
 				const position = new THREE.Vector3();
 				position.lerpVectors(initialPosition, finalPosition, progress);
 
-		
+
 				const angle = Math.PI * 2 * progress; // Ângulo em radianos
 				const rotationMatrix = new THREE.Matrix4().makeRotationY(angle);
 				position.applyMatrix4(rotationMatrix);
@@ -436,23 +317,12 @@
 		});
 
 		function init() {
-
 			const container = document.createElement('div');
 			document.body.appendChild(container);
-
 			camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.25, 20);
-
 			camera.position.set(10, -0.9, -5);
-
 			scene = new THREE.Scene();
-
-
 			scene.background = new THREE.Color(0x252126);
-
-
-
-
-
 
 			new RGBELoader()
 				.setPath('assets/imagem/')
@@ -518,7 +388,7 @@
 								setTimeout(function() {
 									action.paused = false;
 								}, 400);
-								//console.log(timeleft);
+
 							} else {
 								$("#controle_animacao").val(timeleft);
 								action.time = timeleft;
