@@ -1,8 +1,8 @@
 <?php 
 $host = 'localhost';
-$usuario = 'u147978366_biblioteca_sis';
-$senha = 'U3HkErMAHi^a';
-$banco = 'u147978366_biblioteca';
+$usuario = '';
+$senha = '';
+$banco = '';
 
 
 // Criar objeto de conexão
