@@ -122,7 +122,7 @@
 
 				// Enviar a requisição AJAX
 				$.ajax({
-					url: 'save.php',
+					url: 'model/save.php',
 					method: 'POST',
 					data: data,
 					success: function(response) {
@@ -144,7 +144,7 @@
 
 			function carregarDados() {
 				$.ajax({
-					url: 'fetch.php',
+					url: 'model/fetch.php',
 					type: 'GET',
 					dataType: 'json',
 					success: function(response) {
